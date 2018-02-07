@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Solver.Constraints;
+using Solver.Puzzles;
+using System.Collections.Generic;
 
 namespace Solver
 {
@@ -32,6 +34,7 @@ namespace Solver
                     // We have a conflict - we may have forced some values in the call to SolveCurrentGrid, so restore
                     puzzle.Values = (int[,])currentValues.Clone();
                 }
+                // We haven't found a valid solution by guessing this cell's value, so set it back to empty
                 puzzle.Values[emptyCellX, emptyCellY] = 0;
             }
             return false;
@@ -67,7 +70,7 @@ namespace Solver
                                 {
                                     // There are two valid values that can go in this cell and keep the grid valid:
                                     // that is, there's no forced value here
-                                    //if(showAlternatives) System.Diagnostics.Debug.WriteLine($"Cell [{x}, {y}] has possible values {value} and {possibleValue}");
+                                    // System.Diagnostics.Debug.WriteLine($"Cell [{x}, {y}] has possible values {value} and {possibleValue}");
                                     if (!emptyCellExists)
                                     {
                                         emptyCellExists = true;
@@ -87,7 +90,7 @@ namespace Solver
                             return false;
                         }
                         // We've either found one and only one value that can go in this cell and keep the grid valid
-                        // (in value) or we've found two possible values, in which case we set value back to zero.
+                        // (in value) or we've found two possible values, in which case value has been set to zero.
                         puzzle.Values[x, y] = value;
                         if (value != 0) return true;
                     }
@@ -107,8 +110,7 @@ namespace Solver
             {
                 for (int x = 0; x < puzzle.GridSize; x++)
                 {
-
-                    foreach (Criterion criterion in puzzle.Criteria)
+                    foreach (Constraint criterion in puzzle.Criteria)
                     {
                         bool result = criterion.Evaluate(puzzle, x, y);
                         if (!result) return false;

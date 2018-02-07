@@ -1,4 +1,5 @@
 ﻿using Solver;
+using Solver.Puzzles;
 using System.Diagnostics;
 
 namespace Harness

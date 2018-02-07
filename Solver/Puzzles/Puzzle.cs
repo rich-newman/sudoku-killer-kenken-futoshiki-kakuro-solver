@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Solver.Constraints;
+using System.Collections.Generic;
 
-namespace Solver
+namespace Solver.Puzzles
 {
     public class Puzzle
     {
         public int GridSize;
         public int MaxValue;
         public int[,] Values;
-        public List<Criterion> Criteria = new List<Criterion>();
+        public List<Constraint> Criteria = new List<Constraint>();
         //public void AddCriterion(Criterion criterion) => criteria.Add(criterion);
         public Puzzle SetValue(int xCoord, int yCoord, int value)
         {

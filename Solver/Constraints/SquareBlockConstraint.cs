@@ -1,15 +1,12 @@
-﻿using System;
+﻿using Solver.Puzzles;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Solver
+namespace Solver.Constraints
 {
-    public class SquareBlockCriterion : Criterion
+    public class SquareBlockConstraint : Constraint
     {
         private int blockSize;
-        public SquareBlockCriterion(int blockSize) { this.blockSize = blockSize; }
+        public SquareBlockConstraint(int blockSize) { this.blockSize = blockSize; }
         private HashSet<int> hashSet = new HashSet<int>();
         public override bool Evaluate(Puzzle puzzle, int xCoord, int yCoord)
         {

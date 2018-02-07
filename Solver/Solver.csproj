@@ -40,19 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlockSumCriterion.cs" />
-    <Compile Include="Futoshiki.cs" />
-    <Compile Include="GreaterThanCriterion.cs" />
-    <Compile Include="Killer.cs" />
-    <Compile Include="RowCriterion.cs" />
-    <Compile Include="Criterion.cs" />
+    <Compile Include="Constraints\BlockSumConstraint.cs" />
+    <Compile Include="Puzzles\Futoshiki.cs" />
+    <Compile Include="Constraints\GreaterThanConstraint.cs" />
+    <Compile Include="Puzzles\Killer.cs" />
+    <Compile Include="Constraints\RowConstraint.cs" />
+    <Compile Include="Constraints\Constraint.cs" />
     <Compile Include="Output.cs" />
-    <Compile Include="Puzzle.cs" />
+    <Compile Include="Puzzles\Puzzle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ColumnCriterion.cs" />
+    <Compile Include="Constraints\ColumnConstraint.cs" />
     <Compile Include="Solver.cs" />
-    <Compile Include="SquareBlockCriterion.cs" />
-    <Compile Include="Sudoku.cs" />
+    <Compile Include="Constraints\SquareBlockConstraint.cs" />
+    <Compile Include="Puzzles\Sudoku.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

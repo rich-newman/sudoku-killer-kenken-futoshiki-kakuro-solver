@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Solver.Puzzles;
+using System.Collections.Generic;
 
-namespace Solver
+namespace Solver.Constraints
 {
-    public class ColumnCriterion : Criterion
+    public class ColumnConstraint : Constraint
     {
         private HashSet<int> hashSet = new HashSet<int>();
         public override bool Evaluate(Puzzle puzzle, int xCoord, int yCoord)

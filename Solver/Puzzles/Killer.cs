@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Solver.Constraints;
+using System.Collections.Generic;
 
-namespace Solver
+namespace Solver.Puzzles
 {
     public class Killer : Puzzle
     {
@@ -9,9 +10,9 @@ namespace Solver
             GridSize = 9;
             MaxValue = 9;
             Values = new int[GridSize, GridSize];
-            Criteria.Add(new RowCriterion());
-            Criteria.Add(new ColumnCriterion());
-            Criteria.Add(new SquareBlockCriterion(3));
+            Criteria.Add(new RowConstraint());
+            Criteria.Add(new ColumnConstraint());
+            Criteria.Add(new SquareBlockConstraint(3));
         }
 
         public Killer AddBlockSumCriterion(int[] cells, int sum)
@@ -23,7 +24,7 @@ namespace Solver
             //    newList.Add(criterion);
             //}
             //Criteria = newList;
-            Criteria.Add(new BlockSumCriterion(cells, sum));
+            Criteria.Add(new BlockSumConstraint(cells, sum));
 
             return this;
         }

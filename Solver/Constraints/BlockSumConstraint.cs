@@ -1,16 +1,13 @@
-﻿using System;
+﻿using Solver.Puzzles;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Solver
+namespace Solver.Constraints
 {
-    public class BlockSumCriterion : Criterion
+    public class BlockSumConstraint : Constraint
     {
         private int[] cells;
         private int sum;
-        public BlockSumCriterion(int[] cells, int sum) { this.cells = cells; this.sum = sum; }
+        public BlockSumConstraint(int[] cells, int sum) { this.cells = cells; this.sum = sum; }
         public override bool Evaluate(Puzzle puzzle, int xCoord, int yCoord)
         {
             for (int i = 0; i < cells.Length; i+=2)

@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solver;
+using Solver.Constraints;
+using Solver.Puzzles;
 
 namespace UnitTestProject
 {
@@ -20,7 +22,7 @@ namespace UnitTestProject
         public void RowCriterionSuccessTest()
         {
             Sudoku sudoku = CreateTestSudoku();
-            RowCriterion criterion = new RowCriterion();
+            RowConstraint criterion = new RowConstraint();
             bool result = criterion.Evaluate(sudoku, xCoord: 2, yCoord: 0);
             Assert.IsTrue(result);
         }
@@ -31,7 +33,7 @@ namespace UnitTestProject
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(2, 0, 5);  // Duplicate value in row 0
             Output.Show(sudoku.Values);
-            RowCriterion criterion = new RowCriterion();
+            RowConstraint criterion = new RowConstraint();
             bool result = criterion.Evaluate(sudoku, xCoord: 2, yCoord: 0);
             Assert.IsFalse(result);
 
@@ -43,7 +45,7 @@ namespace UnitTestProject
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(2, 0, 2).SetValue(3, 0, 3).SetValue(4, 0, 7).SetValue(6, 0, 8).SetValue(7, 0, 9);
             Output.Show(sudoku.Values);
-            RowCriterion criterion = new RowCriterion();
+            RowConstraint criterion = new RowConstraint();
             bool result = criterion.Evaluate(sudoku, xCoord: 2, yCoord: 0);
             Assert.IsTrue(result);
         }
@@ -54,7 +56,7 @@ namespace UnitTestProject
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(2, 0, 2).SetValue(3, 0, 3).SetValue(4, 0, 7).SetValue(6, 0, 8).SetValue(7, 0, 4);
             Output.Show(sudoku.Values);
-            RowCriterion criterion = new RowCriterion();
+            RowConstraint criterion = new RowConstraint();
             bool result = criterion.Evaluate(sudoku, xCoord: 2, yCoord: 0);
             Assert.IsFalse(result);
         }
@@ -63,7 +65,7 @@ namespace UnitTestProject
         public void ColumnCriterionSuccessTest()
         {
             Sudoku sudoku = CreateTestSudoku();
-            ColumnCriterion criterion = new ColumnCriterion();
+            ColumnConstraint criterion = new ColumnConstraint();
             bool result = criterion.Evaluate(sudoku, xCoord: 2, yCoord: 0);
             Assert.IsTrue(result);
             result = criterion.Evaluate(sudoku, xCoord: 1, yCoord: 0);
@@ -76,7 +78,7 @@ namespace UnitTestProject
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(1, 2, 7);  // Duplicate value in Column 1
             Output.Show(sudoku.Values);
-            ColumnCriterion criterion = new ColumnCriterion();
+            ColumnConstraint criterion = new ColumnConstraint();
             bool result = criterion.Evaluate(sudoku, xCoord: 1, yCoord: 0);
             Assert.IsFalse(result);
 
@@ -88,7 +90,7 @@ namespace UnitTestProject
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(1, 2, 1).SetValue(1, 3, 2).SetValue(1, 5, 3).SetValue(1, 7, 6).SetValue(1, 8, 9);
             Output.Show(sudoku.Values);
-            ColumnCriterion criterion = new ColumnCriterion();
+            ColumnConstraint criterion = new ColumnConstraint();
             bool result = criterion.Evaluate(sudoku, xCoord:1, yCoord: 2);
             Assert.IsTrue(result);
         }
@@ -98,7 +100,7 @@ namespace UnitTestProject
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(1, 2, 1).SetValue(1, 3, 2).SetValue(1, 5, 3).SetValue(1, 7, 6).SetValue(1, 8, 6);
-            ColumnCriterion criterion = new ColumnCriterion();
+            ColumnConstraint criterion = new ColumnConstraint();
             bool result = criterion.Evaluate(sudoku, xCoord: 1, yCoord: 2);
             Assert.IsFalse(result);
         }
@@ -107,7 +109,7 @@ namespace UnitTestProject
         public void SquareBlockCriterionSuccessTest()
         {
             Sudoku sudoku = CreateTestSudoku();
-            SquareBlockCriterion criterion = new SquareBlockCriterion(3);
+            SquareBlockConstraint criterion = new SquareBlockConstraint(3);
             bool result = criterion.Evaluate(sudoku, xCoord: 0, yCoord: 2);
             Assert.IsTrue(result);
             result = criterion.Evaluate(sudoku, xCoord: 4, yCoord: 3);   // Center block
@@ -119,7 +121,7 @@ namespace UnitTestProject
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(4, 4, 7);  // Duplicate value in SquareBlock 1
-            SquareBlockCriterion criterion = new SquareBlockCriterion(3);
+            SquareBlockConstraint criterion = new SquareBlockConstraint(3);
             bool result = criterion.Evaluate(sudoku, xCoord: 4, yCoord: 3);
             Assert.IsFalse(result);
 
@@ -130,7 +132,7 @@ namespace UnitTestProject
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(3, 3, 1).SetValue(4, 3, 4).SetValue(4, 4, 8).SetValue(4, 5, 9).SetValue(5, 5, 5);
-            SquareBlockCriterion criterion = new SquareBlockCriterion(3);
+            SquareBlockConstraint criterion = new SquareBlockConstraint(3);
             bool result = criterion.Evaluate(sudoku, xCoord: 4, yCoord: 3);
             Assert.IsTrue(result);
         }
@@ -140,7 +142,7 @@ namespace UnitTestProject
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(3, 3, 1).SetValue(4, 3, 4).SetValue(4, 4, 8).SetValue(4, 5, 9).SetValue(5, 5, 1);  // Two 1's
-            SquareBlockCriterion criterion = new SquareBlockCriterion(3);
+            SquareBlockConstraint criterion = new SquareBlockConstraint(3);
             bool result = criterion.Evaluate(sudoku, xCoord: 4, yCoord: 3);
             Assert.IsFalse(result);
         }

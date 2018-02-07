@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solver;
+using Solver.Constraints;
+using Solver.Puzzles;
 
 namespace UnitTestProject
 {
@@ -37,7 +39,7 @@ We guess 3 in first empty, is valid, we force values, nothing forced, we guess 1
             }
         }
 
-        public class Criterion1 : Criterion
+        public class Criterion1 : Constraint
         {
             public override bool Evaluate(Puzzle puzzle, int xCoord, int yCoord)
             {
@@ -54,7 +56,7 @@ We guess 3 in first empty, is valid, we force values, nothing forced, we guess 1
             }
         }
 
-        public class Criterion2 : Criterion
+        public class Criterion2 : Constraint
         {
             public override bool Evaluate(Puzzle puzzle, int xCoord, int yCoord)
             {

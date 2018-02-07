@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Solver.Puzzles;
 
-namespace Solver
+namespace Solver.Constraints
 {
     // Value at [x,y] must be greater than value at [ox,oy]
-    public class GreaterThanCriterion : Criterion
+    public class GreaterThanConstraint : Constraint
     {
         //List<int[]> greaterThans = new List<int[]>();
         //public void AddGreaterThan(int x, int y, int ox, int oy)
@@ -19,7 +15,7 @@ namespace Solver
         private int y;
         private int ox;
         private int oy;
-        public GreaterThanCriterion(int x, int y, int ox, int oy) { this.x = x; this.y = y; this.ox = ox; this.oy = oy; }
+        public GreaterThanConstraint(int x, int y, int ox, int oy) { this.x = x; this.y = y; this.ox = ox; this.oy = oy; }
         public override bool Evaluate(Puzzle puzzle, int xCoord, int yCoord)
         {
             if(xCoord == x && yCoord == y)
