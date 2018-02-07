@@ -9,7 +9,7 @@
                 for (int x = 0; x < values.GetLength(0); x++)
                 {
 
-                    System.Diagnostics.Debug.Write(values[x, y]);
+                    System.Diagnostics.Debug.Write(values[x, y] == -1 ? "X" : values[x, y].ToString());
                 }
                 System.Diagnostics.Debug.WriteLine("");
             }
@@ -25,7 +25,7 @@
             {
                 for (int x = 0; x < values.GetLength(0); x++)
                 {
-                    System.Console.Write(values[x, y]);
+                    System.Console.Write(values[x, y] == -1 ? "X" : values[x, y].ToString());
                 }
                 System.Console.WriteLine("");
             }

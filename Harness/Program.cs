@@ -37,12 +37,78 @@ namespace Harness
             Killer killer = CreateKiller();
             System.Console.WriteLine("Killer Tough No 5820 from the Times, 16th Jan 2018: Works but is very slow");
             //Solver.Console.Show(killer.Values);
-            killer.Solve();
+            //killer.Solve();
             Solver.Console.Show(killer.Values);
             sw.Stop();
             System.Console.WriteLine("Killer solution took " + sw.ElapsedMilliseconds / 1000.0 + " seconds");
+            System.Console.WriteLine();
+
+            sw.Reset();
+            sw.Start();
+            Kakuro kakuro = CreateKakuro();
+            System.Console.WriteLine("Kakuro No 2046 from the Times, 16th Jan 2018: Works but is very slow");
+            //Solver.Console.Show(kakuro.Values);
+            kakuro.Solve();
+            Solver.Console.Show(kakuro.Values);
+            sw.Stop();
+            System.Console.WriteLine("Kakuro solution took " + sw.ElapsedMilliseconds / 1000.0 + " seconds");
 
             System.Console.ReadLine();
+        }
+
+        public static Kakuro CreateKakuro()
+        {
+            Kakuro kakuro = new Kakuro();
+            // TODO we can write a method in the Solve that works out the filled-in cells from the blocks,
+            // rather than having to specify them all
+            //kakuro.SetFilledInCell(0, 0).SetFilledInCell(3, 0);
+            kakuro.AddHorizontalBlockSumConstraint(1, 2, 0, 16)
+                .AddHorizontalBlockSumConstraint(6, 9, 0, 29)
+                .AddHorizontalBlockSumConstraint(0, 4, 1, 32)
+                .AddHorizontalBlockSumConstraint(6, 9, 1, 30)
+                .AddHorizontalBlockSumConstraint(0, 1, 2, 9)
+                .AddHorizontalBlockSumConstraint(3, 5, 2, 23)
+                .AddHorizontalBlockSumConstraint(8, 9, 2, 16)
+                .AddHorizontalBlockSumConstraint(0, 1, 3, 6)
+                .AddHorizontalBlockSumConstraint(3, 6, 3, 30)
+                .AddHorizontalBlockSumConstraint(8, 9, 3, 4)
+                .AddHorizontalBlockSumConstraint(2, 3, 4, 17)
+                .AddHorizontalBlockSumConstraint(5, 9, 4, 27)
+                .AddHorizontalBlockSumConstraint(0, 4, 5, 28)
+                .AddHorizontalBlockSumConstraint(6, 7, 5, 14)
+                .AddHorizontalBlockSumConstraint(0, 1, 6, 3)
+                .AddHorizontalBlockSumConstraint(3, 6, 6, 21)
+                .AddHorizontalBlockSumConstraint(8, 9, 6, 13)
+                .AddHorizontalBlockSumConstraint(0, 1, 7, 4)
+                .AddHorizontalBlockSumConstraint(4, 6, 7, 7)
+                .AddHorizontalBlockSumConstraint(8, 9, 7, 8)
+                .AddHorizontalBlockSumConstraint(0, 3, 8, 21)
+                .AddHorizontalBlockSumConstraint(5, 9, 8, 23)
+                .AddHorizontalBlockSumConstraint(0, 3, 9, 19)
+                .AddHorizontalBlockSumConstraint(7, 8, 9, 3)
+                .AddVerticalBlockSumConstraint(0, 1, 3, 7)
+                .AddVerticalBlockSumConstraint(0, 5, 9, 22)
+                .AddVerticalBlockSumConstraint(1, 0, 3, 29)
+                .AddVerticalBlockSumConstraint(1, 5, 9, 24)
+                .AddVerticalBlockSumConstraint(2, 0, 1, 16)
+                .AddVerticalBlockSumConstraint(2, 4, 5, 16)
+                .AddVerticalBlockSumConstraint(2, 8, 9, 4)
+                .AddVerticalBlockSumConstraint(3, 1, 6, 37)
+                .AddVerticalBlockSumConstraint(3, 8, 9, 3)
+                .AddVerticalBlockSumConstraint(4, 1, 3, 23)
+                .AddVerticalBlockSumConstraint(4, 5, 7, 18)
+                .AddVerticalBlockSumConstraint(5, 2, 4, 23)
+                .AddVerticalBlockSumConstraint(5, 6, 8, 21)
+                .AddVerticalBlockSumConstraint(6, 0, 1, 12)
+                .AddVerticalBlockSumConstraint(6, 3, 8, 25)
+                .AddVerticalBlockSumConstraint(7, 0, 1, 16)
+                .AddVerticalBlockSumConstraint(7, 4, 5, 17)
+                .AddVerticalBlockSumConstraint(7, 8, 9, 3)
+                .AddVerticalBlockSumConstraint(8, 0, 4, 26)
+                .AddVerticalBlockSumConstraint(8, 6, 9, 10)
+                .AddVerticalBlockSumConstraint(9, 0, 4, 28)
+                .AddVerticalBlockSumConstraint(9, 6, 8, 23);
+            return kakuro;
         }
 
         public static Futoshiki CreateFutoshiki()

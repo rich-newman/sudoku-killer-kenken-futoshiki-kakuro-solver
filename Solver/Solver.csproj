@@ -43,6 +43,8 @@
     <Compile Include="Constraints\BlockSumConstraint.cs" />
     <Compile Include="Puzzles\Futoshiki.cs" />
     <Compile Include="Constraints\GreaterThanConstraint.cs" />
+    <Compile Include="Puzzles\Kakuro.cs" />
+    <Compile Include="Puzzles\KenKen.cs" />
     <Compile Include="Puzzles\Killer.cs" />
     <Compile Include="Constraints\RowConstraint.cs" />
     <Compile Include="Constraints\Constraint.cs" />

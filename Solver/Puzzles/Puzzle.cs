@@ -25,7 +25,7 @@ namespace Solver.Puzzles
             }
         }
 
-        public void Solve() => Solver.Solve();
+        public virtual void Solve() => Solver.Solve();
 
     }
 }
