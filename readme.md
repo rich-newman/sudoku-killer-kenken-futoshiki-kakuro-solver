@@ -1,14 +1,14 @@
 ## Description
 
-A generic solver for Sudoku, Futoshiki, Killer and other puzzles based on grids of numbers with constraints.
+A generic solver for Sudoku, Futoshiki, Killer, KenKen, Kakuro and other puzzles based on grids of numbers with constraints.
 
-Note that whilst this code can solve the puzzle types listed above it has no nice user interface.  In particular you need to set up a new puzzle to solve in code.
+Note that whilst this code can solve the puzzle types listed above it has no nice user interface.  In particular you have to use code to set up a new puzzle to be solved.
 
 ## Background
 
-On a long flight recently I picked up a paper copy of the UK Times.  This has several pages of puzzles every day and I entertained myself by attempting to solve them.
+On a long flight recently I picked up a paper copy of the UK Times.  This has many pages of puzzles every day and I entertained myself by attempting to solve them.
 
-The Times has several Sudokus daily.  It also has several other very similar puzzle types where the solver is expected to fill in a grid of numbers based on certain constraints.
+The Times has several Sudokus daily.  It also has a few other very similar puzzle types where the solver is expected to fill in a grid of numbers based on certain constraints.
 
 Having tried several of these I realized that these were all basically the same puzzle, and that they lent themselves to a generic solution which could be implemented in code.
 
