@@ -37,7 +37,7 @@ namespace Harness
             Killer killer = CreateKiller();
             System.Console.WriteLine("Killer Tough No 5820 from the Times, 16th Jan 2018: Works but is very slow");
             //Solver.Console.Show(killer.Values);
-            //killer.Solve();
+            killer.Solve();
             Solver.Console.Show(killer.Values);
             sw.Stop();
             System.Console.WriteLine("Killer solution took " + sw.ElapsedMilliseconds / 1000.0 + " seconds");
@@ -52,8 +52,41 @@ namespace Harness
             Solver.Console.Show(kakuro.Values);
             sw.Stop();
             System.Console.WriteLine("Kakuro solution took " + sw.ElapsedMilliseconds / 1000.0 + " seconds");
+            System.Console.WriteLine();
+
+            sw.Reset();
+            sw.Start();
+            KenKen kenKen = CreateKenKen();
+            System.Console.WriteLine("KenKen Medium No 4226 from the Times, 16th Jan 2018: Works but is very slow");
+            //Solver.Console.Show(kakuro.Values);
+            kenKen.Solve();
+            Solver.Console.Show(kenKen.Values);
+            sw.Stop();
+            System.Console.WriteLine("KenKen solution took " + sw.ElapsedMilliseconds / 1000.0 + " seconds");
+            System.Console.WriteLine();
 
             System.Console.ReadLine();
+        }
+
+        public static KenKen CreateKenKen()
+        {
+            KenKen kenKen = new KenKen();
+            kenKen.AddBlock(new int[] { 0, 0, 1, 0 }, 1, Operator.Subtract)
+                .AddBlock(new int[] { 2, 0, 2, 1 }, 2, Operator.Divide)
+                .AddBlock(new int[] { 3, 0, 3, 1 }, 6, Operator.Add)
+                .AddBlock(new int[] { 4, 0, 5, 0 }, 20, Operator.Multiply)
+                .AddBlock(new int[] { 0, 1, 1, 1 }, 3, Operator.Divide)
+                .AddBlock(new int[] { 4, 1, 5, 1, 4, 2 }, 12, Operator.Multiply)
+                .AddBlock(new int[] { 0, 2, 1, 2 }, 9, Operator.Add)
+                .AddBlock(new int[] { 2, 2, 3, 2 }, 1, Operator.Subtract)
+                .AddBlock(new int[] { 5, 2, 5, 3, 5, 4 }, 9, Operator.Add)
+                .AddBlock(new int[] { 0, 3, 0, 4 }, 3, Operator.Divide)
+                .AddBlock(new int[] { 1, 3, 1, 4 }, 10, Operator.Add)
+                .AddBlock(new int[] { 2, 3, 2, 4 }, 1, Operator.Subtract)
+                .AddBlock(new int[] { 3, 3, 4, 3, 3, 4 }, 90, Operator.Multiply)
+                .AddBlock(new int[] { 0, 5, 1, 5, 2, 5 }, 8, Operator.Add)
+                .AddBlock(new int[] { 4, 4, 3, 5, 4, 5, 5, 5 }, 144, Operator.Multiply);
+            return kenKen;
         }
 
         public static Kakuro CreateKakuro()
@@ -62,52 +95,52 @@ namespace Harness
             // TODO we can write a method in the Solve that works out the filled-in cells from the blocks,
             // rather than having to specify them all
             //kakuro.SetFilledInCell(0, 0).SetFilledInCell(3, 0);
-            kakuro.AddHorizontalBlockSumConstraint(1, 2, 0, 16)
-                .AddHorizontalBlockSumConstraint(6, 9, 0, 29)
-                .AddHorizontalBlockSumConstraint(0, 4, 1, 32)
-                .AddHorizontalBlockSumConstraint(6, 9, 1, 30)
-                .AddHorizontalBlockSumConstraint(0, 1, 2, 9)
-                .AddHorizontalBlockSumConstraint(3, 5, 2, 23)
-                .AddHorizontalBlockSumConstraint(8, 9, 2, 16)
-                .AddHorizontalBlockSumConstraint(0, 1, 3, 6)
-                .AddHorizontalBlockSumConstraint(3, 6, 3, 30)
-                .AddHorizontalBlockSumConstraint(8, 9, 3, 4)
-                .AddHorizontalBlockSumConstraint(2, 3, 4, 17)
-                .AddHorizontalBlockSumConstraint(5, 9, 4, 27)
-                .AddHorizontalBlockSumConstraint(0, 4, 5, 28)
-                .AddHorizontalBlockSumConstraint(6, 7, 5, 14)
-                .AddHorizontalBlockSumConstraint(0, 1, 6, 3)
-                .AddHorizontalBlockSumConstraint(3, 6, 6, 21)
-                .AddHorizontalBlockSumConstraint(8, 9, 6, 13)
-                .AddHorizontalBlockSumConstraint(0, 1, 7, 4)
-                .AddHorizontalBlockSumConstraint(4, 6, 7, 7)
-                .AddHorizontalBlockSumConstraint(8, 9, 7, 8)
-                .AddHorizontalBlockSumConstraint(0, 3, 8, 21)
-                .AddHorizontalBlockSumConstraint(5, 9, 8, 23)
-                .AddHorizontalBlockSumConstraint(0, 3, 9, 19)
-                .AddHorizontalBlockSumConstraint(7, 8, 9, 3)
-                .AddVerticalBlockSumConstraint(0, 1, 3, 7)
-                .AddVerticalBlockSumConstraint(0, 5, 9, 22)
-                .AddVerticalBlockSumConstraint(1, 0, 3, 29)
-                .AddVerticalBlockSumConstraint(1, 5, 9, 24)
-                .AddVerticalBlockSumConstraint(2, 0, 1, 16)
-                .AddVerticalBlockSumConstraint(2, 4, 5, 16)
-                .AddVerticalBlockSumConstraint(2, 8, 9, 4)
-                .AddVerticalBlockSumConstraint(3, 1, 6, 37)
-                .AddVerticalBlockSumConstraint(3, 8, 9, 3)
-                .AddVerticalBlockSumConstraint(4, 1, 3, 23)
-                .AddVerticalBlockSumConstraint(4, 5, 7, 18)
-                .AddVerticalBlockSumConstraint(5, 2, 4, 23)
-                .AddVerticalBlockSumConstraint(5, 6, 8, 21)
-                .AddVerticalBlockSumConstraint(6, 0, 1, 12)
-                .AddVerticalBlockSumConstraint(6, 3, 8, 25)
-                .AddVerticalBlockSumConstraint(7, 0, 1, 16)
-                .AddVerticalBlockSumConstraint(7, 4, 5, 17)
-                .AddVerticalBlockSumConstraint(7, 8, 9, 3)
-                .AddVerticalBlockSumConstraint(8, 0, 4, 26)
-                .AddVerticalBlockSumConstraint(8, 6, 9, 10)
-                .AddVerticalBlockSumConstraint(9, 0, 4, 28)
-                .AddVerticalBlockSumConstraint(9, 6, 8, 23);
+            kakuro.AddHorizontalBlock(1, 2, 0, 16)
+                .AddHorizontalBlock(6, 9, 0, 29)
+                .AddHorizontalBlock(0, 4, 1, 32)
+                .AddHorizontalBlock(6, 9, 1, 30)
+                .AddHorizontalBlock(0, 1, 2, 9)
+                .AddHorizontalBlock(3, 5, 2, 23)
+                .AddHorizontalBlock(8, 9, 2, 16)
+                .AddHorizontalBlock(0, 1, 3, 6)
+                .AddHorizontalBlock(3, 6, 3, 30)
+                .AddHorizontalBlock(8, 9, 3, 4)
+                .AddHorizontalBlock(2, 3, 4, 17)
+                .AddHorizontalBlock(5, 9, 4, 27)
+                .AddHorizontalBlock(0, 4, 5, 28)
+                .AddHorizontalBlock(6, 7, 5, 14)
+                .AddHorizontalBlock(0, 1, 6, 3)
+                .AddHorizontalBlock(3, 6, 6, 21)
+                .AddHorizontalBlock(8, 9, 6, 13)
+                .AddHorizontalBlock(0, 1, 7, 4)
+                .AddHorizontalBlock(4, 6, 7, 7)
+                .AddHorizontalBlock(8, 9, 7, 8)
+                .AddHorizontalBlock(0, 3, 8, 21)
+                .AddHorizontalBlock(5, 9, 8, 23)
+                .AddHorizontalBlock(0, 3, 9, 19)
+                .AddHorizontalBlock(7, 8, 9, 3)
+                .AddVerticalBlock(0, 1, 3, 7)
+                .AddVerticalBlock(0, 5, 9, 22)
+                .AddVerticalBlock(1, 0, 3, 29)
+                .AddVerticalBlock(1, 5, 9, 24)
+                .AddVerticalBlock(2, 0, 1, 16)
+                .AddVerticalBlock(2, 4, 5, 16)
+                .AddVerticalBlock(2, 8, 9, 4)
+                .AddVerticalBlock(3, 1, 6, 37)
+                .AddVerticalBlock(3, 8, 9, 3)
+                .AddVerticalBlock(4, 1, 3, 23)
+                .AddVerticalBlock(4, 5, 7, 18)
+                .AddVerticalBlock(5, 2, 4, 23)
+                .AddVerticalBlock(5, 6, 8, 21)
+                .AddVerticalBlock(6, 0, 1, 12)
+                .AddVerticalBlock(6, 3, 8, 25)
+                .AddVerticalBlock(7, 0, 1, 16)
+                .AddVerticalBlock(7, 4, 5, 17)
+                .AddVerticalBlock(7, 8, 9, 3)
+                .AddVerticalBlock(8, 0, 4, 26)
+                .AddVerticalBlock(8, 6, 9, 10)
+                .AddVerticalBlock(9, 0, 4, 28)
+                .AddVerticalBlock(9, 6, 8, 23);
             return kakuro;
         }
 
@@ -115,46 +148,46 @@ namespace Harness
         {
             Futoshiki futoshiki = new Futoshiki();
             futoshiki.SetValue(4, 0, 3).SetValue(1, 3, 1).SetValue(0, 4, 1);
-            futoshiki.AddGreaterThanConstraint(0, 0, 1, 0).AddGreaterThanConstraint(3, 1, 3, 0).AddGreaterThanConstraint(0, 1, 1, 1).
-                AddGreaterThanConstraint(2, 1, 3, 1).AddGreaterThanConstraint(0, 3, 0, 2).AddGreaterThanConstraint(2, 4, 2, 3).
-                AddGreaterThanConstraint(4, 4, 4, 3);
+            futoshiki.AddGreaterThan(0, 0, 1, 0).AddGreaterThan(3, 1, 3, 0).AddGreaterThan(0, 1, 1, 1).
+                AddGreaterThan(2, 1, 3, 1).AddGreaterThan(0, 3, 0, 2).AddGreaterThan(2, 4, 2, 3).
+                AddGreaterThan(4, 4, 4, 3);
             return futoshiki;
         }
 
         public static Killer CreateKiller()
         {
             Killer killer = new Killer();
-            killer.AddBlockSumConstraint(new int[] { 0, 0, 0, 1 }, 17)
-                .AddBlockSumConstraint(new int[] { 1, 0, 2, 0, 3, 0 }, 12)
-                .AddBlockSumConstraint(new int[] { 4, 0, 4, 1, 5, 1 }, 19)
-                .AddBlockSumConstraint(new int[] { 5, 0, 6, 0, 7, 0, 8, 0 }, 19)
-                .AddBlockSumConstraint(new int[] { 1, 1, 1, 2, 1, 3, 1, 4 }, 19)
-                .AddBlockSumConstraint(new int[] { 2, 1, 2, 2 }, 8)
-                .AddBlockSumConstraint(new int[] { 3, 1, 3, 2 }, 16)
-                .AddBlockSumConstraint(new int[] { 6, 1, 6, 2, 6, 3 }, 19)
-                .AddBlockSumConstraint(new int[] { 7, 1, 8, 1 }, 6)
-                .AddBlockSumConstraint(new int[] { 0, 2, 0, 3 }, 10)
-                .AddBlockSumConstraint(new int[] { 4, 2, 5, 2, 4, 3, 5, 3 }, 15)
-                .AddBlockSumConstraint(new int[] { 7, 2, 8, 2, 7, 3, 8, 3 }, 18)
-                .AddBlockSumConstraint(new int[] { 2, 3, 3, 3 }, 9)
-                .AddBlockSumConstraint(new int[] { 0, 4, 0, 5, 0, 6 }, 9)
-                .AddBlockSumConstraint(new int[] { 2, 4, 3, 4, 4, 4, 5, 4 }, 20)
-                .AddBlockSumConstraint(new int[] { 6, 4, 7, 4 }, 7)
-                .AddBlockSumConstraint(new int[] { 8, 4, 8, 5 }, 7)
-                .AddBlockSumConstraint(new int[] { 1, 5, 1, 6 }, 14)
-                .AddBlockSumConstraint(new int[] { 2, 5, 3, 5 }, 6)
-                .AddBlockSumConstraint(new int[] { 4, 5, 4, 6 }, 9)
-                .AddBlockSumConstraint(new int[] { 5, 5, 5, 6, 5, 7 }, 22)
-                .AddBlockSumConstraint(new int[] { 6, 5, 7, 5 }, 16)
-                .AddBlockSumConstraint(new int[] { 2, 6, 3, 6 }, 13)
-                .AddBlockSumConstraint(new int[] { 6, 6, 7, 6 }, 9)
-                .AddBlockSumConstraint(new int[] { 8, 6, 8, 7 }, 8)
-                .AddBlockSumConstraint(new int[] { 0, 7, 1, 7 }, 5)
-                .AddBlockSumConstraint(new int[] { 2, 7, 3, 7 }, 10)
-                .AddBlockSumConstraint(new int[] { 4, 7, 2, 8, 3, 8, 4, 8 }, 20)
-                .AddBlockSumConstraint(new int[] { 6, 7, 7, 7, 5, 8, 6, 8 }, 21)
-                .AddBlockSumConstraint(new int[] { 0, 8, 1, 8 }, 12)
-                .AddBlockSumConstraint(new int[] { 7, 8, 8, 8 }, 10);
+            killer.AddBlock(new int[] { 0, 0, 0, 1 }, 17)
+                .AddBlock(new int[] { 1, 0, 2, 0, 3, 0 }, 12)
+                .AddBlock(new int[] { 4, 0, 4, 1, 5, 1 }, 19)
+                .AddBlock(new int[] { 5, 0, 6, 0, 7, 0, 8, 0 }, 19)
+                .AddBlock(new int[] { 1, 1, 1, 2, 1, 3, 1, 4 }, 19)
+                .AddBlock(new int[] { 2, 1, 2, 2 }, 8)
+                .AddBlock(new int[] { 3, 1, 3, 2 }, 16)
+                .AddBlock(new int[] { 6, 1, 6, 2, 6, 3 }, 19)
+                .AddBlock(new int[] { 7, 1, 8, 1 }, 6)
+                .AddBlock(new int[] { 0, 2, 0, 3 }, 10)
+                .AddBlock(new int[] { 4, 2, 5, 2, 4, 3, 5, 3 }, 15)
+                .AddBlock(new int[] { 7, 2, 8, 2, 7, 3, 8, 3 }, 18)
+                .AddBlock(new int[] { 2, 3, 3, 3 }, 9)
+                .AddBlock(new int[] { 0, 4, 0, 5, 0, 6 }, 9)
+                .AddBlock(new int[] { 2, 4, 3, 4, 4, 4, 5, 4 }, 20)
+                .AddBlock(new int[] { 6, 4, 7, 4 }, 7)
+                .AddBlock(new int[] { 8, 4, 8, 5 }, 7)
+                .AddBlock(new int[] { 1, 5, 1, 6 }, 14)
+                .AddBlock(new int[] { 2, 5, 3, 5 }, 6)
+                .AddBlock(new int[] { 4, 5, 4, 6 }, 9)
+                .AddBlock(new int[] { 5, 5, 5, 6, 5, 7 }, 22)
+                .AddBlock(new int[] { 6, 5, 7, 5 }, 16)
+                .AddBlock(new int[] { 2, 6, 3, 6 }, 13)
+                .AddBlock(new int[] { 6, 6, 7, 6 }, 9)
+                .AddBlock(new int[] { 8, 6, 8, 7 }, 8)
+                .AddBlock(new int[] { 0, 7, 1, 7 }, 5)
+                .AddBlock(new int[] { 2, 7, 3, 7 }, 10)
+                .AddBlock(new int[] { 4, 7, 2, 8, 3, 8, 4, 8 }, 20)
+                .AddBlock(new int[] { 6, 7, 7, 7, 5, 8, 6, 8 }, 21)
+                .AddBlock(new int[] { 0, 8, 1, 8 }, 12)
+                .AddBlock(new int[] { 7, 8, 8, 8 }, 10);
             return killer;
         }
 

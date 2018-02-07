@@ -6,12 +6,12 @@ namespace Solver.Constraints
     // Killer: 'Each set of cells must add up to the target number.  Within each set of cells a digit can't be repeated.'
     // Kakuro has the same constraint, except that the cells are always in a line, not an arbitrarily-shaped block
     // We model this in the Kakuro puzzle class rather than creating a new constraint
-    public class BlockSumConstraint : Constraint
+    public class BlockSumNoDuplicatesConstraint : Constraint
     {
         private int[] cells;
         public int[] Cells => cells;
         private int sum;
-        public BlockSumConstraint(int[] cells, int sum) { this.cells = cells; this.sum = sum; }
+        public BlockSumNoDuplicatesConstraint(int[] cells, int sum) { this.cells = cells; this.sum = sum; }
         public override bool Evaluate(Puzzle puzzle, int xCoord, int yCoord)
         {
             for (int i = 0; i < cells.Length; i+=2)

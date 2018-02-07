@@ -40,7 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constraints\BlockSumConstraint.cs" />
+    <Compile Include="Constraints\BlockArithmeticConstraint.cs" />
+    <Compile Include="Constraints\BlockSumNoDuplicatesConstraint.cs" />
     <Compile Include="Puzzles\Futoshiki.cs" />
     <Compile Include="Constraints\GreaterThanConstraint.cs" />
     <Compile Include="Puzzles\Kakuro.cs" />

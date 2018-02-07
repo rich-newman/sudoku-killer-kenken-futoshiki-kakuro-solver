@@ -15,17 +15,9 @@ namespace Solver.Puzzles
             Constraints.Add(new SquareBlockConstraint(3));
         }
 
-        public Killer AddBlockSumConstraint(int[] cells, int sum)
+        public Killer AddBlock(int[] cells, int sum)
         {
-            //List<Constraint> newList = new List<Constraint>();
-            //newList.Add(new BlockSumConstraint(cells, sum));
-            //foreach (Constraint constraint in Constraints)
-            //{
-            //    newList.Add(constraint);
-            //}
-            //Constraints = newList;
-            Constraints.Add(new BlockSumConstraint(cells, sum));
-
+            Constraints.Add(new BlockSumNoDuplicatesConstraint(cells, sum));
             return this;
         }
     }

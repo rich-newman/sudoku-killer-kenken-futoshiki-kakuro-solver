@@ -23,7 +23,7 @@ namespace Solver
             if (isSolveFinished) return true;  // TODO pretty sure isSolveFinished can be replaced by emptyCellX == -1, although at present that can be true if we've found a conflict
             if (!isConflictFound)
             { 
-                //Output.Show(puzzle.Values);
+                Output.Show(puzzle.Values);
                 int[,] currentValues = (int[,])puzzle.Values.Clone();
                 for (int guess = 1; guess <= puzzle.MaxValue; guess++)
                 {

@@ -13,7 +13,7 @@ namespace Solver.Puzzles
             Constraints.Add(new ColumnConstraint());
         }
 
-        public Futoshiki AddGreaterThanConstraint(int x, int y, int ox, int oy)
+        public Futoshiki AddGreaterThan(int x, int y, int ox, int oy)
         {
             Constraints.Add(new GreaterThanConstraint(x, y, ox, oy));
             return this;
