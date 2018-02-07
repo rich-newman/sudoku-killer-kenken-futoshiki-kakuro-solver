@@ -10,25 +10,25 @@ namespace Harness
             Sudoku sudoku = CreateSudoku1();
             System.Console.WriteLine("Sudoku Mild No 9596 from the Times, 16th Jan 2018");
             Solver.Console.Show(sudoku.Values);
-            sudoku.Solver.Solve();
+            sudoku.Solve();
             Solver.Console.Show(sudoku.Values);
 
             Sudoku sudoku2 = CreateSudoku2();
             System.Console.WriteLine("Sudoku Difficult No 9597 from the Times, 16th Jan 2018");
             Solver.Console.Show(sudoku2.Values);
-            sudoku2.Solver.Solve();
+            sudoku2.Solve();
             Solver.Console.Show(sudoku2.Values);
 
             Sudoku sudoku3 = CreateSudoku3();
             System.Console.WriteLine("Sudoku Super fiendish No 9598 from the Times, 16th Jan 2018");
             Solver.Console.Show(sudoku3.Values);
-            sudoku3.Solver.Solve();
+            sudoku3.Solve();
             Solver.Console.Show(sudoku3.Values);
 
             Futoshiki futoshiki = CreateFutoshiki();
             System.Console.WriteLine("Futoshiki No 3087 from the Times, 16th Jan 2018");
             Solver.Console.Show(futoshiki.Values);
-            futoshiki.Solver.Solve();
+            futoshiki.Solve();
             Solver.Console.Show(futoshiki.Values);
 
             Stopwatch sw = new Stopwatch();
@@ -36,7 +36,7 @@ namespace Harness
             Killer killer = CreateKiller();
             System.Console.WriteLine("Killer Tough No 5820 from the Times, 16th Jan 2018: Works but is very slow");
             //Solver.Console.Show(killer.Values);
-            killer.Solver.Solve();
+            killer.Solve();
             Solver.Console.Show(killer.Values);
             sw.Stop();
             System.Console.WriteLine("Killer solution took " + sw.ElapsedMilliseconds / 1000.0 + " seconds");

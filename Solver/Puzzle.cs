@@ -25,5 +25,7 @@ namespace Solver
             }
         }
 
+        public void Solve() => Solver.Solve();
+
     }
 }
