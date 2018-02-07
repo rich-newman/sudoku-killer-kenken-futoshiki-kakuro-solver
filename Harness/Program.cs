@@ -1,5 +1,4 @@
-﻿using Solver;
-using Solver.Puzzles;
+﻿using Solver.Puzzles;
 using System.Diagnostics;
 
 namespace Harness
@@ -36,7 +35,6 @@ namespace Harness
             sw.Start();
             Killer killer = CreateKiller();
             System.Console.WriteLine("Killer Tough No 5820 from the Times, 16th Jan 2018: Works but is very slow");
-            //Solver.Console.Show(killer.Values);
             killer.Solve();
             Solver.Console.Show(killer.Values);
             sw.Stop();
@@ -47,7 +45,6 @@ namespace Harness
             sw.Start();
             Kakuro kakuro = CreateKakuro();
             System.Console.WriteLine("Kakuro No 2046 from the Times, 16th Jan 2018: Works but is very slow");
-            //Solver.Console.Show(kakuro.Values);
             kakuro.Solve();
             Solver.Console.Show(kakuro.Values);
             sw.Stop();
@@ -57,8 +54,7 @@ namespace Harness
             sw.Reset();
             sw.Start();
             KenKen kenKen = CreateKenKen();
-            System.Console.WriteLine("KenKen Medium No 4226 from the Times, 16th Jan 2018: Works but is very slow");
-            //Solver.Console.Show(kakuro.Values);
+            System.Console.WriteLine("KenKen Medium No 4226 from the Times, 16th Jan 2018");
             kenKen.Solve();
             Solver.Console.Show(kenKen.Values);
             sw.Stop();
@@ -92,9 +88,6 @@ namespace Harness
         public static Kakuro CreateKakuro()
         {
             Kakuro kakuro = new Kakuro();
-            // TODO we can write a method in the Solve that works out the filled-in cells from the blocks,
-            // rather than having to specify them all
-            //kakuro.SetFilledInCell(0, 0).SetFilledInCell(3, 0);
             kakuro.AddHorizontalBlock(1, 2, 0, 16)
                 .AddHorizontalBlock(6, 9, 0, 29)
                 .AddHorizontalBlock(0, 4, 1, 32)
@@ -292,41 +285,120 @@ namespace Harness
                 .SetValue(5, 7, 1);
             return sudoku;
         }
-
-        // public static Sudoku CreateSudoku1Reflection()
-        // {
-        //     Sudoku sudoku = new Sudoku();
-        //     sudoku.SetValue(0, 0, 6)
-        //         .SetValue(0, 1, 5)
-        //         .SetValue(0, 5, 1)
-        //         .SetValue(0, 8, 4)
-        //         .SetValue(1, 1, 8)
-        //         .SetValue(1, 8, 2)
-        //         .SetValue(2, 4, 5)
-        //         .SetValue(2, 5, 6)
-        //         .SetValue(2, 7, 7)
-        //         .SetValue(2, 8, 8)
-        //         .SetValue(3, 0, 7)
-        //         .SetValue(3, 5, 3)
-        //         .SetValue(3, 8, 5)
-        //         .SetValue(4, 1, 4)
-        //         .SetValue(4, 3, 7)
-        //         .SetValue(4, 5, 2)
-        //         .SetValue(4, 7, 3)
-        //         .SetValue(5, 0, 3)
-        //         .SetValue(5, 3, 6)
-        //         .SetValue(5, 8, 7)
-        //         .SetValue(6, 0, 8)
-        //         .SetValue(6, 1, 7)
-        //         .SetValue(6, 3, 2)
-        //         .SetValue(6, 4, 6)
-        //         .SetValue(7, 0, 9)
-        //         .SetValue(7, 7, 4)
-        //         .SetValue(8, 0, 5)
-        //         .SetValue(8, 3, 9)
-        //         .SetValue(8, 7, 8)
-        //         .SetValue(8, 8, 3);
-        //     return sudoku;
-        //}
     }
 }
+/*
+ * OUTPUT:
+Sudoku Mild No 9596 from the Times, 16th Jan 2018
+650001004
+080000002
+000056078
+700003005
+040702030
+300600007
+870260000
+900000040
+500900083
+
+657821394
+481379562
+239456178
+796143825
+145782639
+328695417
+873264951
+912538746
+564917283
+
+Sudoku Difficult No 9597 from the Times, 16th Jan 2018
+050000080
+000509000
+104000605
+040807060
+006000800
+078000930
+600000004
+400201008
+015000320
+
+253176489
+867549213
+194382675
+941837562
+326915847
+578624931
+682753194
+439261758
+715498326
+
+Sudoku Super fiendish No 9598 from the Times, 16th Jan 2018
+000000000
+000450070
+008200945
+056070002
+700000008
+400080350
+395007100
+080061000
+000000000
+
+524719863
+963458271
+178236945
+856173492
+732594618
+419682357
+395847126
+287961534
+641325789
+
+Futoshiki No 3087 from the Times, 16th Jan 2018
+00003
+00000
+00000
+01000
+10000
+
+54213
+32541
+25134
+41352
+13425
+
+Killer Tough No 5820 from the Times, 16th Jan 2018: Works but is very slow
+847162359
+913785642
+625934817
+496371528
+571298436
+382456791
+168549273
+234617985
+759823164
+
+Killer solution took 150.276 seconds
+
+Kakuro No 2046 from the Times, 16th Jan 2018: Works but is very slow
+X97XXX5789
+48956X7968
+27X986XX97
+15X7986X13
+XX98X97821
+24769X59XX
+12X2784X49
+31XX241X26
+9831X92138
+7912XXX21X
+
+Kakuro solution took 151.119 seconds
+
+KenKen Medium No 4226 from the Times, 16th Jan 2018
+236145
+623514
+451236
+164352
+345621
+512463
+
+KenKen solution took 0.042 seconds
+ */
