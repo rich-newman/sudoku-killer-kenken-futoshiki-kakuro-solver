@@ -23,12 +23,12 @@ namespace Solver
             if (isSolveFinished) return true;  // TODO pretty sure isSolveFinished can be replaced by emptyCellX == -1, although at present that can be true if we've found a conflict
             if (!isConflictFound)
             { 
-                Output.Show(puzzle.Values);
+                //Output.Show(puzzle.Values);
                 int[,] currentValues = (int[,])puzzle.Values.Clone();
                 for (int guess = 1; guess <= puzzle.MaxValue; guess++)
                 {
                     puzzle.Values[emptyCellX, emptyCellY] = guess;
-                    if (!ValidateValues()) continue;
+                    if (!ValidateValues(emptyCellX, emptyCellY)) continue;
                     bool result = SolveCurrentGrid();
                     if (result) return true;
                     // We have a conflict - we may have forced some values in the call to SolveCurrentGrid, so restore
@@ -64,7 +64,7 @@ namespace Solver
                         for (int possibleValue = 1; possibleValue <= puzzle.MaxValue; possibleValue++)
                         {
                             puzzle.Values[x, y] = possibleValue;
-                            if (ValidateValues())
+                            if (ValidateValues(x, y))
                             {
                                 if (value != -1)
                                 {
@@ -110,12 +110,19 @@ namespace Solver
             {
                 for (int x = 0; x < puzzle.GridSize; x++)
                 {
-                    foreach (Constraint constraint in puzzle.Constraints)
-                    {
-                        bool result = constraint.Evaluate(puzzle, x, y);
-                        if (!result) return false;
-                    }
+                    bool result = ValidateValues(x, y);
+                    if (!result) return false;
                 }
+            }
+            return true;
+        }
+
+        public bool ValidateValues(int x, int y)
+        {
+            foreach (Constraint constraint in puzzle.Constraints)
+            {
+                bool result = constraint.Evaluate(puzzle, x, y);
+                if (!result) return false;
             }
             return true;
         }
