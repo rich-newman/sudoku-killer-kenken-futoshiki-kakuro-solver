@@ -105,14 +105,14 @@ namespace Solver
             // TODO At the moment we always revalidate the entire grid even when we've just added a single value
             // Optimization can be to just validate the cell we've populated: this will work for rows/columns/squareblocks
             // The greater than needs to check if either cell has changed, the block sum needs to know which block a cell is in and check that:
-            // can be set up when the criteria are created
+            // can be set up when the constraints are created
             for (int y = 0; y < puzzle.GridSize; y++)
             {
                 for (int x = 0; x < puzzle.GridSize; x++)
                 {
-                    foreach (Constraint criterion in puzzle.Criteria)
+                    foreach (Constraint constraint in puzzle.Constraints)
                     {
-                        bool result = criterion.Evaluate(puzzle, x, y);
+                        bool result = constraint.Evaluate(puzzle, x, y);
                         if (!result) return false;
                     }
                 }

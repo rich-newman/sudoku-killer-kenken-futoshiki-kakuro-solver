@@ -49,46 +49,46 @@ namespace Harness
         {
             Futoshiki futoshiki = new Futoshiki();
             futoshiki.SetValue(4, 0, 3).SetValue(1, 3, 1).SetValue(0, 4, 1);
-            futoshiki.AddGreaterThanCriterion(0, 0, 1, 0).AddGreaterThanCriterion(3, 1, 3, 0).AddGreaterThanCriterion(0, 1, 1, 1).
-                AddGreaterThanCriterion(2, 1, 3, 1).AddGreaterThanCriterion(0, 3, 0, 2).AddGreaterThanCriterion(2, 4, 2, 3).
-                AddGreaterThanCriterion(4, 4, 4, 3);
+            futoshiki.AddGreaterThanConstraint(0, 0, 1, 0).AddGreaterThanConstraint(3, 1, 3, 0).AddGreaterThanConstraint(0, 1, 1, 1).
+                AddGreaterThanConstraint(2, 1, 3, 1).AddGreaterThanConstraint(0, 3, 0, 2).AddGreaterThanConstraint(2, 4, 2, 3).
+                AddGreaterThanConstraint(4, 4, 4, 3);
             return futoshiki;
         }
 
         public static Killer CreateKiller()
         {
             Killer killer = new Killer();
-            killer.AddBlockSumCriterion(new int[] { 0, 0, 0, 1 }, 17)
-                .AddBlockSumCriterion(new int[] { 1, 0, 2, 0, 3, 0 }, 12)
-                .AddBlockSumCriterion(new int[] { 4, 0, 4, 1, 5, 1 }, 19)
-                .AddBlockSumCriterion(new int[] { 5, 0, 6, 0, 7, 0, 8, 0 }, 19)
-                .AddBlockSumCriterion(new int[] { 1, 1, 1, 2, 1, 3, 1, 4 }, 19)
-                .AddBlockSumCriterion(new int[] { 2, 1, 2, 2 }, 8)
-                .AddBlockSumCriterion(new int[] { 3, 1, 3, 2 }, 16)
-                .AddBlockSumCriterion(new int[] { 6, 1, 6, 2, 6, 3 }, 19)
-                .AddBlockSumCriterion(new int[] { 7, 1, 8, 1 }, 6)
-                .AddBlockSumCriterion(new int[] { 0, 2, 0, 3 }, 10)
-                .AddBlockSumCriterion(new int[] { 4, 2, 5, 2, 4, 3, 5, 3 }, 15)
-                .AddBlockSumCriterion(new int[] { 7, 2, 8, 2, 7, 3, 8, 3 }, 18)
-                .AddBlockSumCriterion(new int[] { 2, 3, 3, 3 }, 9)
-                .AddBlockSumCriterion(new int[] { 0, 4, 0, 5, 0, 6 }, 9)
-                .AddBlockSumCriterion(new int[] { 2, 4, 3, 4, 4, 4, 5, 4 }, 20)
-                .AddBlockSumCriterion(new int[] { 6, 4, 7, 4 }, 7)
-                .AddBlockSumCriterion(new int[] { 8, 4, 8, 5 }, 7)
-                .AddBlockSumCriterion(new int[] { 1, 5, 1, 6 }, 14)
-                .AddBlockSumCriterion(new int[] { 2, 5, 3, 5 }, 6)
-                .AddBlockSumCriterion(new int[] { 4, 5, 4, 6 }, 9)
-                .AddBlockSumCriterion(new int[] { 5, 5, 5, 6, 5, 7 }, 22)
-                .AddBlockSumCriterion(new int[] { 6, 5, 7, 5 }, 16)
-                .AddBlockSumCriterion(new int[] { 2, 6, 3, 6 }, 13)
-                .AddBlockSumCriterion(new int[] { 6, 6, 7, 6 }, 9)
-                .AddBlockSumCriterion(new int[] { 8, 6, 8, 7 }, 8)
-                .AddBlockSumCriterion(new int[] { 0, 7, 1, 7 }, 5)
-                .AddBlockSumCriterion(new int[] { 2, 7, 3, 7 }, 10)
-                .AddBlockSumCriterion(new int[] { 4, 7, 2, 8, 3, 8, 4, 8 }, 20)
-                .AddBlockSumCriterion(new int[] { 6, 7, 7, 7, 5, 8, 6, 8 }, 21)
-                .AddBlockSumCriterion(new int[] { 0, 8, 1, 8 }, 12)
-                .AddBlockSumCriterion(new int[] { 7, 8, 8, 8 }, 10);
+            killer.AddBlockSumConstraint(new int[] { 0, 0, 0, 1 }, 17)
+                .AddBlockSumConstraint(new int[] { 1, 0, 2, 0, 3, 0 }, 12)
+                .AddBlockSumConstraint(new int[] { 4, 0, 4, 1, 5, 1 }, 19)
+                .AddBlockSumConstraint(new int[] { 5, 0, 6, 0, 7, 0, 8, 0 }, 19)
+                .AddBlockSumConstraint(new int[] { 1, 1, 1, 2, 1, 3, 1, 4 }, 19)
+                .AddBlockSumConstraint(new int[] { 2, 1, 2, 2 }, 8)
+                .AddBlockSumConstraint(new int[] { 3, 1, 3, 2 }, 16)
+                .AddBlockSumConstraint(new int[] { 6, 1, 6, 2, 6, 3 }, 19)
+                .AddBlockSumConstraint(new int[] { 7, 1, 8, 1 }, 6)
+                .AddBlockSumConstraint(new int[] { 0, 2, 0, 3 }, 10)
+                .AddBlockSumConstraint(new int[] { 4, 2, 5, 2, 4, 3, 5, 3 }, 15)
+                .AddBlockSumConstraint(new int[] { 7, 2, 8, 2, 7, 3, 8, 3 }, 18)
+                .AddBlockSumConstraint(new int[] { 2, 3, 3, 3 }, 9)
+                .AddBlockSumConstraint(new int[] { 0, 4, 0, 5, 0, 6 }, 9)
+                .AddBlockSumConstraint(new int[] { 2, 4, 3, 4, 4, 4, 5, 4 }, 20)
+                .AddBlockSumConstraint(new int[] { 6, 4, 7, 4 }, 7)
+                .AddBlockSumConstraint(new int[] { 8, 4, 8, 5 }, 7)
+                .AddBlockSumConstraint(new int[] { 1, 5, 1, 6 }, 14)
+                .AddBlockSumConstraint(new int[] { 2, 5, 3, 5 }, 6)
+                .AddBlockSumConstraint(new int[] { 4, 5, 4, 6 }, 9)
+                .AddBlockSumConstraint(new int[] { 5, 5, 5, 6, 5, 7 }, 22)
+                .AddBlockSumConstraint(new int[] { 6, 5, 7, 5 }, 16)
+                .AddBlockSumConstraint(new int[] { 2, 6, 3, 6 }, 13)
+                .AddBlockSumConstraint(new int[] { 6, 6, 7, 6 }, 9)
+                .AddBlockSumConstraint(new int[] { 8, 6, 8, 7 }, 8)
+                .AddBlockSumConstraint(new int[] { 0, 7, 1, 7 }, 5)
+                .AddBlockSumConstraint(new int[] { 2, 7, 3, 7 }, 10)
+                .AddBlockSumConstraint(new int[] { 4, 7, 2, 8, 3, 8, 4, 8 }, 20)
+                .AddBlockSumConstraint(new int[] { 6, 7, 7, 7, 5, 8, 6, 8 }, 21)
+                .AddBlockSumConstraint(new int[] { 0, 8, 1, 8 }, 12)
+                .AddBlockSumConstraint(new int[] { 7, 8, 8, 8 }, 10);
             return killer;
         }
 

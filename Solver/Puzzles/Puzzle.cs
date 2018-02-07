@@ -8,8 +8,7 @@ namespace Solver.Puzzles
         public int GridSize;
         public int MaxValue;
         public int[,] Values;
-        public List<Constraint> Criteria = new List<Constraint>();
-        //public void AddCriterion(Criterion criterion) => criteria.Add(criterion);
+        public List<Constraint> Constraints = new List<Constraint>();
         public Puzzle SetValue(int xCoord, int yCoord, int value)
         {
             Values[xCoord, yCoord] = value;

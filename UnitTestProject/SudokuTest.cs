@@ -15,135 +15,135 @@ namespace UnitTestProject
             Output.Show(sudoku.Values);
             Assert.AreEqual(9, sudoku.Values.GetLength(0));
             Assert.AreEqual(9, sudoku.Values.GetLength(1));
-            Assert.AreEqual(3, sudoku.Criteria.Count);
+            Assert.AreEqual(3, sudoku.Constraints.Count);
         }
 
         [TestMethod]
-        public void RowCriterionSuccessTest()
+        public void RowConstraintSuccessTest()
         {
             Sudoku sudoku = CreateTestSudoku();
-            RowConstraint criterion = new RowConstraint();
-            bool result = criterion.Evaluate(sudoku, xCoord: 2, yCoord: 0);
+            RowConstraint constraint = new RowConstraint();
+            bool result = constraint.Evaluate(sudoku, xCoord: 2, yCoord: 0);
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void RowCriterionFailTest()
+        public void RowConstraintFailTest()
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(2, 0, 5);  // Duplicate value in row 0
             Output.Show(sudoku.Values);
-            RowConstraint criterion = new RowConstraint();
-            bool result = criterion.Evaluate(sudoku, xCoord: 2, yCoord: 0);
+            RowConstraint constraint = new RowConstraint();
+            bool result = constraint.Evaluate(sudoku, xCoord: 2, yCoord: 0);
             Assert.IsFalse(result);
 
         }
 
         [TestMethod]
-        public void RowCriterionSuccessFullRowTest()
+        public void RowConstraintSuccessFullRowTest()
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(2, 0, 2).SetValue(3, 0, 3).SetValue(4, 0, 7).SetValue(6, 0, 8).SetValue(7, 0, 9);
             Output.Show(sudoku.Values);
-            RowConstraint criterion = new RowConstraint();
-            bool result = criterion.Evaluate(sudoku, xCoord: 2, yCoord: 0);
+            RowConstraint constraint = new RowConstraint();
+            bool result = constraint.Evaluate(sudoku, xCoord: 2, yCoord: 0);
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void RowCriterionFailureFullRowTest()
+        public void RowConstraintFailureFullRowTest()
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(2, 0, 2).SetValue(3, 0, 3).SetValue(4, 0, 7).SetValue(6, 0, 8).SetValue(7, 0, 4);
             Output.Show(sudoku.Values);
-            RowConstraint criterion = new RowConstraint();
-            bool result = criterion.Evaluate(sudoku, xCoord: 2, yCoord: 0);
+            RowConstraint constraint = new RowConstraint();
+            bool result = constraint.Evaluate(sudoku, xCoord: 2, yCoord: 0);
             Assert.IsFalse(result);
         }
 
         [TestMethod]
-        public void ColumnCriterionSuccessTest()
+        public void ColumnConstraintSuccessTest()
         {
             Sudoku sudoku = CreateTestSudoku();
-            ColumnConstraint criterion = new ColumnConstraint();
-            bool result = criterion.Evaluate(sudoku, xCoord: 2, yCoord: 0);
+            ColumnConstraint constraint = new ColumnConstraint();
+            bool result = constraint.Evaluate(sudoku, xCoord: 2, yCoord: 0);
             Assert.IsTrue(result);
-            result = criterion.Evaluate(sudoku, xCoord: 1, yCoord: 0);
+            result = constraint.Evaluate(sudoku, xCoord: 1, yCoord: 0);
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void ColumnCriterionFailTest()
+        public void ColumnConstraintFailTest()
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(1, 2, 7);  // Duplicate value in Column 1
             Output.Show(sudoku.Values);
-            ColumnConstraint criterion = new ColumnConstraint();
-            bool result = criterion.Evaluate(sudoku, xCoord: 1, yCoord: 0);
+            ColumnConstraint constraint = new ColumnConstraint();
+            bool result = constraint.Evaluate(sudoku, xCoord: 1, yCoord: 0);
             Assert.IsFalse(result);
 
         }
 
         [TestMethod]
-        public void ColumnCriterionSuccessFullColumnTest()
+        public void ColumnConstraintSuccessFullColumnTest()
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(1, 2, 1).SetValue(1, 3, 2).SetValue(1, 5, 3).SetValue(1, 7, 6).SetValue(1, 8, 9);
             Output.Show(sudoku.Values);
-            ColumnConstraint criterion = new ColumnConstraint();
-            bool result = criterion.Evaluate(sudoku, xCoord:1, yCoord: 2);
+            ColumnConstraint constraint = new ColumnConstraint();
+            bool result = constraint.Evaluate(sudoku, xCoord:1, yCoord: 2);
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void ColumnCriterionFailureFullColumnTest()
+        public void ColumnConstraintFailureFullColumnTest()
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(1, 2, 1).SetValue(1, 3, 2).SetValue(1, 5, 3).SetValue(1, 7, 6).SetValue(1, 8, 6);
-            ColumnConstraint criterion = new ColumnConstraint();
-            bool result = criterion.Evaluate(sudoku, xCoord: 1, yCoord: 2);
+            ColumnConstraint constraint = new ColumnConstraint();
+            bool result = constraint.Evaluate(sudoku, xCoord: 1, yCoord: 2);
             Assert.IsFalse(result);
         }
 
         [TestMethod]
-        public void SquareBlockCriterionSuccessTest()
+        public void SquareBlockConstraintSuccessTest()
         {
             Sudoku sudoku = CreateTestSudoku();
-            SquareBlockConstraint criterion = new SquareBlockConstraint(3);
-            bool result = criterion.Evaluate(sudoku, xCoord: 0, yCoord: 2);
+            SquareBlockConstraint constraint = new SquareBlockConstraint(3);
+            bool result = constraint.Evaluate(sudoku, xCoord: 0, yCoord: 2);
             Assert.IsTrue(result);
-            result = criterion.Evaluate(sudoku, xCoord: 4, yCoord: 3);   // Center block
+            result = constraint.Evaluate(sudoku, xCoord: 4, yCoord: 3);   // Center block
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void SquareBlockCriterionFailTest()
+        public void SquareBlockConstraintFailTest()
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(4, 4, 7);  // Duplicate value in SquareBlock 1
-            SquareBlockConstraint criterion = new SquareBlockConstraint(3);
-            bool result = criterion.Evaluate(sudoku, xCoord: 4, yCoord: 3);
+            SquareBlockConstraint constraint = new SquareBlockConstraint(3);
+            bool result = constraint.Evaluate(sudoku, xCoord: 4, yCoord: 3);
             Assert.IsFalse(result);
 
         }
 
         [TestMethod]
-        public void SquareBlockCriterionSuccessFullSquareBlockTest()
+        public void SquareBlockConstraintSuccessFullSquareBlockTest()
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(3, 3, 1).SetValue(4, 3, 4).SetValue(4, 4, 8).SetValue(4, 5, 9).SetValue(5, 5, 5);
-            SquareBlockConstraint criterion = new SquareBlockConstraint(3);
-            bool result = criterion.Evaluate(sudoku, xCoord: 4, yCoord: 3);
+            SquareBlockConstraint constraint = new SquareBlockConstraint(3);
+            bool result = constraint.Evaluate(sudoku, xCoord: 4, yCoord: 3);
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void SquareBlockCriterionFailureFullSquareBlockTest()
+        public void SquareBlockConstraintFailureFullSquareBlockTest()
         {
             Sudoku sudoku = CreateTestSudoku();
             sudoku.SetValue(3, 3, 1).SetValue(4, 3, 4).SetValue(4, 4, 8).SetValue(4, 5, 9).SetValue(5, 5, 1);  // Two 1's
-            SquareBlockConstraint criterion = new SquareBlockConstraint(3);
-            bool result = criterion.Evaluate(sudoku, xCoord: 4, yCoord: 3);
+            SquareBlockConstraint constraint = new SquareBlockConstraint(3);
+            bool result = constraint.Evaluate(sudoku, xCoord: 4, yCoord: 3);
             Assert.IsFalse(result);
         }
 

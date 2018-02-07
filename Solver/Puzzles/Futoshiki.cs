@@ -9,13 +9,13 @@ namespace Solver.Puzzles
             GridSize = 5;
             MaxValue = 5;
             Values = new int[GridSize, GridSize];
-            Criteria.Add(new RowConstraint());
-            Criteria.Add(new ColumnConstraint());
+            Constraints.Add(new RowConstraint());
+            Constraints.Add(new ColumnConstraint());
         }
 
-        public Futoshiki AddGreaterThanCriterion(int x, int y, int ox, int oy)
+        public Futoshiki AddGreaterThanConstraint(int x, int y, int ox, int oy)
         {
-            Criteria.Add(new GreaterThanConstraint(x, y, ox, oy));
+            Constraints.Add(new GreaterThanConstraint(x, y, ox, oy));
             return this;
         }
     }

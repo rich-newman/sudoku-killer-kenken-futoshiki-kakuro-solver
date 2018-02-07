@@ -10,7 +10,7 @@ namespace UnitTestProject
     {
         /*
          * I wanted something that would test recursion using the very unrealistic scenario below.  The only way
-         * to do this is to invent a puzzle with some truly strange criteria, which is what the test below does.
+         * to do this is to invent a puzzle with some truly strange constraints, which is what the test below does.
 We solve for forced values and have three empties
 We guess 1 in first empty, immediately gives conflict
 We guess 2 in first empty, is valid, recurse, we force values, second empty is filled.  We guess 1-9 in third empty get conflict in all - does this work?
@@ -35,15 +35,15 @@ We guess 3 in first empty, is valid, we force values, nothing forced, we guess 1
                 GridSize = 3;
                 MaxValue = 9;
                 Values = new int[GridSize, GridSize];
-                Criteria.Add(new Criterion1());
+                Constraints.Add(new Constraint1());
             }
         }
 
-        public class Criterion1 : Constraint
+        public class Constraint1 : Constraint
         {
             public override bool Evaluate(Puzzle puzzle, int xCoord, int yCoord)
             {
-                // Totally unrealistic puzzle criterion to check the recursion
+                // Totally unrealistic puzzle constraint to check the recursion
                 // We should: 
                 // 1.  Guess 1 in [0, 2] and it should be invalid immediately
                 // 2.  Guess 2 in [0, 2] and then iterate over all values for [1, 2] and [2, 2] finding no valid solution
@@ -56,7 +56,7 @@ We guess 3 in first empty, is valid, we force values, nothing forced, we guess 1
             }
         }
 
-        public class Criterion2 : Constraint
+        public class Constraint2 : Constraint
         {
             public override bool Evaluate(Puzzle puzzle, int xCoord, int yCoord)
             {

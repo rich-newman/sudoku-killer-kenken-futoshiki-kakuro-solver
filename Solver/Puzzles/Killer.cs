@@ -10,21 +10,21 @@ namespace Solver.Puzzles
             GridSize = 9;
             MaxValue = 9;
             Values = new int[GridSize, GridSize];
-            Criteria.Add(new RowConstraint());
-            Criteria.Add(new ColumnConstraint());
-            Criteria.Add(new SquareBlockConstraint(3));
+            Constraints.Add(new RowConstraint());
+            Constraints.Add(new ColumnConstraint());
+            Constraints.Add(new SquareBlockConstraint(3));
         }
 
-        public Killer AddBlockSumCriterion(int[] cells, int sum)
+        public Killer AddBlockSumConstraint(int[] cells, int sum)
         {
-            //List<Criterion> newList = new List<Criterion>();
-            //newList.Add(new BlockSumCriterion(cells, sum));
-            //foreach (Criterion criterion in Criteria)
+            //List<Constraint> newList = new List<Constraint>();
+            //newList.Add(new BlockSumConstraint(cells, sum));
+            //foreach (Constraint constraint in Constraints)
             //{
-            //    newList.Add(criterion);
+            //    newList.Add(constraint);
             //}
-            //Criteria = newList;
-            Criteria.Add(new BlockSumConstraint(cells, sum));
+            //Constraints = newList;
+            Constraints.Add(new BlockSumConstraint(cells, sum));
 
             return this;
         }
