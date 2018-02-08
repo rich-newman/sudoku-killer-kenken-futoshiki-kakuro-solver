@@ -2,6 +2,8 @@
 
 A generic solver for Sudoku, Futoshiki, Killer, KenKen, Kakuro and other puzzles based on grids of numbers with constraints.
 
+The code is structured in such a way that it should be relatively easy to add a new type of constraint-based grid puzzle to the system.
+
 Note that whilst this code can solve the puzzle types listed above it has no nice user interface.  In particular you have to use code to set up a new puzzle to be solved.
 
 ## Background

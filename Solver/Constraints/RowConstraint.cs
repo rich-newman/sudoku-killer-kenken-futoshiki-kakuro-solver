@@ -8,7 +8,6 @@ namespace Solver.Constraints
         private HashSet<int> hashSet = new HashSet<int>();
         public override bool Evaluate(Puzzle puzzle, int xCoord, int yCoord)
         {
-            //if (xCoord > 0) return true;
             hashSet.Clear();
             for (int x = 0; x < puzzle.GridSize; x++)
             {

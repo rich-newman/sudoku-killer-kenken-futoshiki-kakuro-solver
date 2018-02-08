@@ -12,10 +12,8 @@ namespace Solver.Constraints
         {
             hashSet.Clear();
             int xLower = (xCoord / blockSize) * 3;
-            //if (xLower != xCoord) return true;
             int xUpper = xLower + 3;
             int yLower = (yCoord / blockSize) * 3;
-            //if (yLower != yCoord) return true;
             int yUpper = yLower + 3;
             for (int y = yLower; y < yUpper; y++)
             {
