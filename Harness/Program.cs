@@ -438,6 +438,74 @@ namespace Harness
 }
 /*
  * OUTPUT:
+Sudoku from the Wikipedia page https://en.wikipedia.org/wiki/Sudoku
+530070000
+600195000
+098000060
+800060003
+400803001
+700020006
+060000280
+000419005
+000080079
+
+534678912
+672195348
+198342567
+859761423
+426853791
+713924856
+961537284
+287419635
+345286179
+
+Killer from the Wikipedia page https://en.wikipedia.org/wiki/Killer_sudoku
+215647398
+368952174
+794381652
+586274931
+142593867
+973816425
+821739546
+659428713
+437165289
+
+Killer solution took 0.383 seconds
+
+KenKen from the Wikipedia page https://en.wikipedia.org/wiki/KenKen
+563412
+614523
+452361
+341256
+236145
+125634
+
+KenKen solution took 0.009 seconds
+
+Futoshiki from the Wikipedia page https://en.wikipedia.org/wiki/Futoshiki
+00000
+40002
+00400
+00004
+00000
+
+54321
+43152
+21435
+35214
+12543
+
+Kakuro from the Wikipedia page https://en.wikipedia.org/wiki/Kakuro
+97XX879
+89X8957
+68597XX
+X61X26X
+XX46132
+8931X14
+312XX21
+
+Kakuro solution took 0.027 seconds
+
 Sudoku Mild No 9596 from the Times, 16th Jan 2018
 650001004
 080000002
@@ -501,6 +569,29 @@ Sudoku Super fiendish No 9598 from the Times, 16th Jan 2018
 287961534
 641325789
 
+Killer Tough No 5820 from the Times, 16th Jan 2018
+847162359
+913785642
+625934817
+496371528
+571298436
+382456791
+168549273
+234617985
+759823164
+
+Killer solution took 2.881 seconds
+
+KenKen Medium No 4226 from the Times, 16th Jan 2018
+236145
+623514
+451236
+164352
+345621
+512463
+
+KenKen solution took 0.005 seconds
+
 Futoshiki No 3087 from the Times, 16th Jan 2018
 00003
 00000
@@ -514,20 +605,7 @@ Futoshiki No 3087 from the Times, 16th Jan 2018
 41352
 13425
 
-Killer Tough No 5820 from the Times, 16th Jan 2018: Works but is very slow
-847162359
-913785642
-625934817
-496371528
-571298436
-382456791
-168549273
-234617985
-759823164
-
-Killer solution took 150.276 seconds
-
-Kakuro No 2046 from the Times, 16th Jan 2018: Works but is very slow
+Kakuro No 2046 from the Times, 16th Jan 2018
 X97XXX5789
 48956X7968
 27X986XX97
@@ -539,15 +617,5 @@ XX98X97821
 9831X92138
 7912XXX21X
 
-Kakuro solution took 151.119 seconds
-
-KenKen Medium No 4226 from the Times, 16th Jan 2018
-236145
-623514
-451236
-164352
-345621
-512463
-
-KenKen solution took 0.042 seconds
+Kakuro solution took 1.401 seconds
  */
