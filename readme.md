@@ -12,7 +12,7 @@ The Times has several Sudokus daily.  It also has a few other very similar puzzl
 
 Having tried several of these I realized that these were all basically the same puzzle, and that they lent themselves to a generic solution which could be implemented in code.
 
-So as a holiday project I decided to write a solver.  I wanted to use an OO language as it seemed to fit the problem quite well, so used C#.
+So I decided to write a solver.  I wanted to use an OO language as it seemed to fit the problem quite well, so used C#.
 
 This code is the result of that project.
 
@@ -20,11 +20,34 @@ This code is the result of that project.
 
 The Harness project shows how to set up a puzzle and output the solution, in file Program.cs.
 
-For a Sudoku this involves instantiating the Sudoku class, for example Sudoku sudoku = new Sudoku().
+For a Sudoku this involves instantiating the Sudoku class, for example 
+``` csharp
+Sudoku sudoku = new Sudoku();
+```
 
 Then call the SetValue method on it repeatedly to set up any values that are in the initial grid.  The parameters are X-coordinate, Y-coordinate, value.  The coordinates run from 0-8.
 
-So for example sudoku.SetValue(0, 0, 4) sets the top left cell to contain 4.  sudoku.SetValue(1, 0, 9) sets the cell to the right of that to 9.
+So for example 
 
-To solve the puzzle call sudoku.Solve().  After this the results will be in sudoku.Values, which is a 9x9 integer array as you'd expect.  These can be output to the console window with Solver.Console.Show(sudoku.Values).
+``` csharp
+sudoku.SetValue(0, 0, 4); 
+```
+sets the top left cell to contain 4. 
+ 
+``` csharp
+sudoku.SetValue(1, 0, 9);
+```
+sets the cell to the right of that to 9.
 
+To solve the puzzle call
+``` csharp
+sudoku.Solve();
+```
+After this the results will be in sudoku.Values, which is a 9x9 integer array as you'd expect.  These can be output to the console window with 
+``` csharp
+Solver.Console.Show(sudoku.Values);
+```
+
+## Performance
+
+This code has not been highly optimized.  However it's fairly efficient.  On my slow laptop most puzzles take at most a few hundred milliseconds.  The tough Kakuro is taking about 3 seconds.
