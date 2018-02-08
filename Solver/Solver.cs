@@ -21,22 +21,19 @@ namespace Solver
         {
             SetAllForcedValues(out bool isConflictFound, out bool isSolveFinished, out int emptyCellX, out int emptyCellY);
             if (isSolveFinished) return true;  // TODO pretty sure isSolveFinished can be replaced by emptyCellX == -1, although at present that can be true if we've found a conflict
-            if (!isConflictFound)
-            {               
-                //Output.Show(puzzle.Values); // Slows everything down, but useful for seeing progress if it's not working
-                int[,] currentValues = (int[,])puzzle.Values.Clone();
-                for (int guess = 1; guess <= puzzle.MaxValue; guess++)
-                {
-                    puzzle.Values[emptyCellX, emptyCellY] = guess;
-                    if (!ValidateValues(emptyCellX, emptyCellY)) continue;
-                    bool result = SolveCurrentGrid();
-                    if (result) return true;
-                    // We have a conflict - we may have forced some values in the call to SolveCurrentGrid, so restore
-                    puzzle.Values = (int[,])currentValues.Clone();
-                }
-                // We haven't found a valid solution by guessing this cell's value, so set it back to empty
-                puzzle.Values[emptyCellX, emptyCellY] = 0;
+            if (isConflictFound) return false;
+            //Output.Show(puzzle.Values); // Slows everything down, but useful for seeing progress if it's not working
+            int[,] currentValues = (int[,])puzzle.Values.Clone();
+            for (int guess = 1; guess <= puzzle.MaxValue; guess++)
+            {
+                puzzle.Values[emptyCellX, emptyCellY] = guess;
+                if (!ValidateValues(emptyCellX, emptyCellY)) continue;
+                if (SolveCurrentGrid()) return true;
+                // We have a conflict - we may have forced some values in the call to SolveCurrentGrid, so restore
+                puzzle.Values = (int[,])currentValues.Clone();
             }
+            // We haven't found a valid solution by guessing this cell's value, so set it back to empty
+            puzzle.Values[emptyCellX, emptyCellY] = 0;
             return false;
         }
 
@@ -53,7 +50,6 @@ namespace Solver
         {
             emptyCellX = emptyCellY = -1;
             isConflictFound = isSolveFinished = false;
-            bool emptyCellExists = false;
             for (int y = 0; y < puzzle.GridSize; y++)
             {
                 for (int x = 0; x < puzzle.GridSize; x++)
@@ -68,15 +64,9 @@ namespace Solver
                             {
                                 if (value != -1)
                                 {
-                                    // There are two valid values that can go in this cell and keep the grid valid:
-                                    // that is, there's no forced value here
-                                    // System.Diagnostics.Debug.WriteLine($"Cell [{x}, {y}] has possible values {value} and {possibleValue}");
-                                    if (!emptyCellExists)
-                                    {
-                                        emptyCellExists = true;
-                                        emptyCellX = x;
-                                        emptyCellY = y;
-                                    }
+                                    // There are two values that can go in this cell and keep the grid valid: there's no forced value here
+                                    // When we started this method this cell was empty, and it's going to stay that way: record if first empty cell
+                                    if (emptyCellX == -1) { emptyCellX = x; emptyCellY = y; }
                                     value = 0;
                                     break;
                                 }
@@ -84,28 +74,20 @@ namespace Solver
                             }
                         }
                         // No value can be found that can provide a solution to the grid: we have a conflict
-                        if (value == -1)
-                        {
-                            isConflictFound = true;
-                            return false;
-                        }
+                        if (value == -1) { isConflictFound = true; return false; }
                         // We've either found one and only one value that can go in this cell and keep the grid valid
-                        // (in value) or we've found two possible values, in which case value has been set to zero.
+                        // (in value) or we've found two possible values, in which case value==0 and we set cell back to empty
                         puzzle.Values[x, y] = value;
                         if (value != 0) return true;
                     }
                 }
             }
-            if (!emptyCellExists) isSolveFinished = true;
+            if (emptyCellX == -1) isSolveFinished = true; // No empty cells
             return false;
         }
 
         public bool ValidateValues()
         {
-            // TODO At the moment we always revalidate the entire grid even when we've just added a single value
-            // Optimization can be to just validate the cell we've populated: this will work for rows/columns/squareblocks
-            // The greater than needs to check if either cell has changed, the block sum needs to know which block a cell is in and check that:
-            // can be set up when the constraints are created
             for (int y = 0; y < puzzle.GridSize; y++)
             {
                 for (int x = 0; x < puzzle.GridSize; x++)

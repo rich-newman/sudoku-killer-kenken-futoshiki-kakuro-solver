@@ -99,7 +99,7 @@ namespace Harness
 
         public static Kakuro CreateKakuro()
         {
-            Kakuro kakuro = new Kakuro();
+            Kakuro kakuro = new Kakuro(10);
             kakuro.AddHorizontalBlock(1, 2, 0, 16)
                 .AddHorizontalBlock(6, 9, 0, 29)
                 .AddHorizontalBlock(0, 4, 1, 32)

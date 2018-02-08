@@ -1,17 +1,19 @@
 ﻿using Solver.Constraints;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Solver.Puzzles
 {
+    /// <summary>
+    /// A puzzle on a grid of any size.  The grid has some cells filled in (unavailable) and some cells empty.
+    /// The empty cells form horizontal and vertical blocks, and must be filled with the values 1-9 such that the blocks 
+    /// sum to specified values.  One block cannot contain the same value twice.
+    /// https://en.wikipedia.org/wiki/Kakuro
+    /// </summary>
     public class Kakuro: Puzzle
     {
-        public Kakuro()
+        public Kakuro(int gridSize)
         {
-            GridSize = 10;
+            GridSize = gridSize;
             MaxValue = 9;
             Values = new int[GridSize, GridSize];
         }
@@ -40,13 +42,21 @@ namespace Solver.Puzzles
             {
                 for (int y = 0; y < GridSize; y++)
                 {
-                    // We use 0 for an empty cell and -1 for cells that can't take a value
+                    // We use 0 for an empty cell and -1 for cells that can't take a value (= are filled in)
                     if (!blockCells.Contains(y * GridSize + x))
                         SetValue(x, y, -1);
                 }
             }
         }
 
+        /// <summary>
+        /// Adds a Kakuro block in a column
+        /// </summary>
+        /// <param name="xCoordLower">Lower x-coordinate of the block</param>
+        /// <param name="xCoordUpper">Upper x-coordinate of the block</param>
+        /// <param name="yCoord">y-coordinate of the column the block is in</param>
+        /// <param name="sum">Sum of the values in the block</param>
+        /// <returns>This puzzle so we can use fluent programming</returns>
         public Kakuro AddHorizontalBlock(int xCoordLower, int xCoordUpper, int yCoord, int sum)
         {
             // If our block goes from, say, [3,3] to [6,3] we want to create a cells array with
@@ -62,6 +72,14 @@ namespace Solver.Puzzles
             return this;
         }
 
+        /// <summary>
+        /// Adds a Kakuro block in a row
+        /// </summary>
+        /// <param name="xCoord">x-coordinate of the row the block is in</param>
+        /// <param name="yCoordLower">Lower y-coordinate of the block</param>
+        /// <param name="yCoordUpper">Upper y-coordinate of the block</param>
+        /// <param name="sum">Sum of the values in the block</param>
+        /// <returns>This puzzle so we can use fluent programming</returns>
         public Kakuro AddVerticalBlock(int xCoord, int yCoordLower, int yCoordUpper, int sum)
         {
             // If our block goes from, say, [8,6] to [8,9] we want to create a cells array with
