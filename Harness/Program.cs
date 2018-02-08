@@ -7,6 +7,8 @@ namespace Harness
     {
         static void Main(string[] args)
         {
+            Stopwatch sw = new Stopwatch();
+
             Sudoku sudoku = CreateSudoku1();
             System.Console.WriteLine("Sudoku Mild No 9596 from the Times, 16th Jan 2018");
             Solver.Console.Show(sudoku.Values);
@@ -31,10 +33,10 @@ namespace Harness
             futoshiki.Solve();
             Solver.Console.Show(futoshiki.Values);
 
-            Stopwatch sw = new Stopwatch();
+            sw.Reset();
             sw.Start();
             Killer killer = CreateKiller();
-            System.Console.WriteLine("Killer Tough No 5820 from the Times, 16th Jan 2018: Works but is very slow");
+            System.Console.WriteLine("Killer Tough No 5820 from the Times, 16th Jan 2018");
             killer.Solve();
             Solver.Console.Show(killer.Values);
             sw.Stop();
@@ -43,8 +45,18 @@ namespace Harness
 
             sw.Reset();
             sw.Start();
+            Killer wikipediaKiller = CreateWikipediaKiller();
+            System.Console.WriteLine("Killer from the Wikipedia page on Killer Sudokus");
+            wikipediaKiller.Solve();
+            Solver.Console.Show(wikipediaKiller.Values);
+            sw.Stop();
+            System.Console.WriteLine("Killer solution took " + sw.ElapsedMilliseconds / 1000.0 + " seconds");
+            System.Console.WriteLine();
+
+            sw.Reset();
+            sw.Start();
             Kakuro kakuro = CreateKakuro();
-            System.Console.WriteLine("Kakuro No 2046 from the Times, 16th Jan 2018: Works but is very slow");
+            System.Console.WriteLine("Kakuro No 2046 from the Times, 16th Jan 2018");
             kakuro.Solve();
             Solver.Console.Show(kakuro.Values);
             sw.Stop();
@@ -181,6 +193,42 @@ namespace Harness
                 .AddBlock(new int[] { 6, 7, 7, 7, 5, 8, 6, 8 }, 21)
                 .AddBlock(new int[] { 0, 8, 1, 8 }, 12)
                 .AddBlock(new int[] { 7, 8, 8, 8 }, 10);
+            return killer;
+        }
+
+        public static Killer CreateWikipediaKiller()
+        {
+            // https://en.wikipedia.org/wiki/Killer_sudoku#/media/File:Killersudoku_color.svg
+            Killer killer = new Killer();
+            killer.AddBlock(new int[] { 0, 0, 1, 0 }, 3)
+                .AddBlock(new int[] { 2, 0, 3, 0, 4, 0 }, 15)
+                .AddBlock(new int[] { 5, 0, 4, 1, 5, 1, 4, 2 }, 22)
+                .AddBlock(new int[] { 6, 0, 6, 1 }, 4)
+                .AddBlock(new int[] { 7, 0, 7, 1 }, 16)
+                .AddBlock(new int[] { 8, 0, 8, 1, 8, 2, 8, 3 }, 15)
+                .AddBlock(new int[] { 0, 1, 1, 1, 0, 2, 1, 2 }, 25)
+                .AddBlock(new int[] { 2, 1, 3, 1 }, 17)
+                .AddBlock(new int[] { 2, 2, 3, 2, 3, 3 }, 9)
+                .AddBlock(new int[] { 5, 2, 5, 3, 5, 4 }, 8)
+                .AddBlock(new int[] { 6, 2, 7, 2, 6, 3 }, 20)
+                .AddBlock(new int[] { 0, 3, 0, 4 }, 6)
+                .AddBlock(new int[] { 1, 3, 2, 3 }, 14)
+                .AddBlock(new int[] { 4, 3, 4, 4, 4, 5 }, 17)
+                .AddBlock(new int[] { 7, 3, 6, 4, 7, 4 }, 17)
+                .AddBlock(new int[] { 1, 4, 2, 4, 1, 5 }, 13)
+                .AddBlock(new int[] { 3, 4, 3, 5, 3, 6 }, 20)
+                .AddBlock(new int[] { 8, 4, 8, 5 }, 12)
+                .AddBlock(new int[] { 0, 5, 0, 6, 0, 7, 0, 8 }, 27)
+                .AddBlock(new int[] { 2, 5, 1, 6, 2, 6 }, 6)
+                .AddBlock(new int[] { 5, 5, 5, 6, 6, 6 }, 20)
+                .AddBlock(new int[] { 6, 5, 7, 5 }, 6)
+                .AddBlock(new int[] { 4, 6, 3, 7, 4, 7, 3, 8 }, 10)
+                .AddBlock(new int[] { 7, 6, 8, 6, 7, 7, 8, 7 }, 14)
+                .AddBlock(new int[] { 1, 7, 1, 8 }, 8)
+                .AddBlock(new int[] { 2, 7, 2, 8 }, 16)
+                .AddBlock(new int[] { 5, 7, 6, 7 }, 15)
+                .AddBlock(new int[] { 4, 8, 5, 8, 6, 8 }, 13)
+                .AddBlock(new int[] { 7, 8, 8, 8 }, 17);
             return killer;
         }
 

@@ -13,7 +13,7 @@ namespace Solver
         {
             if (!ValidateValues()) throw new System.Exception("Invalid start up grid");
             bool result = SolveCurrentGrid();
-            //if (!result) throw new System.Exception("Grid cannot be solved");
+            if (!result) throw new System.Exception("Grid cannot be solved");
         }
 
         // Any grid passed to this has to be valid: it doesn't check validity of the base grid it's using
@@ -22,8 +22,8 @@ namespace Solver
             SetAllForcedValues(out bool isConflictFound, out bool isSolveFinished, out int emptyCellX, out int emptyCellY);
             if (isSolveFinished) return true;  // TODO pretty sure isSolveFinished can be replaced by emptyCellX == -1, although at present that can be true if we've found a conflict
             if (!isConflictFound)
-            { 
-                //Output.Show(puzzle.Values);
+            {               
+                //Output.Show(puzzle.Values); // Slows everything down, but useful for seeing progress if it's not working
                 int[,] currentValues = (int[,])puzzle.Values.Clone();
                 for (int guess = 1; guess <= puzzle.MaxValue; guess++)
                 {
